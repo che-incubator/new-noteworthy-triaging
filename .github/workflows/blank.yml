@@ -1,0 +1,27 @@
+name: Publish to github pages
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  publish:
+    name: publish
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Clone source code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - name: build content
+        run: |
+          yarn
+          yarn run build
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages
+          folder: build
