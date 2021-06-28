@@ -47,7 +47,7 @@
       <div
         class="row"
         style="width: 100%"
-        v-if="filteredPullRequests?.length > 0"
+        v-if="requestFinished"
       >
         <div class="col-2">
           <div class="form-check">
@@ -137,7 +137,7 @@
     </div>
   </div>
 
-  <div v-if="filteredPullRequests?.length > 0">
+  <div v-if="requestFinished">
     <table class="table">
       <caption>
         {{
@@ -371,6 +371,7 @@ export default defineComponent({
       // reset error message
       this.currentErrorMessage = undefined;
       this.loadingInProgress = true;
+      this.requestFinished = false;
       this.loadingMessage = 'Loading repositories...';
       this.pullRequests.length = 0;
       const listOfRepositories = await this.initListOfRepositories();
@@ -454,6 +455,7 @@ export default defineComponent({
       }
       this.pullRequests = pullRequests;
       this.loadingInProgress = false;
+      this.requestFinished = true;
     },
   },
 
@@ -482,6 +484,7 @@ export default defineComponent({
       responseAvailable: false,
       loadingInProgress: false,
       loadingMessage: 'Loading',
+      requestFinished: false,
       pullRequests: [],
       currentErrorMessage: undefined,
       githubTokenValue: "",
