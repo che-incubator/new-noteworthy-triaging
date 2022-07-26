@@ -299,7 +299,6 @@ export default defineComponent({
         const repositoriesYaml: any = jsyaml.load(content);
         // get only URL of repositories
         filteredRepositories = repositoriesYaml.repositories
-          .filter((repo: any) => repo.useCheReleaseLifecycle === true)
           .map((repo: any) => {
             if (repo.url.startsWith("https://github.com/")) {
               return repo.url.substring("https://github.com/".length);
