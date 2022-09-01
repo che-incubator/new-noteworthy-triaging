@@ -310,7 +310,14 @@ export default defineComponent({
       return filteredRepositories;
     },
     getCheIssue(cheIssueNumber: number) {
-      return this.cheIssues.get(cheIssueNumber);
+      const issue = this.cheIssues.get(cheIssueNumber);
+      if (!issue) {
+        return {
+          title:
+            "warning: linked issue is not a che issue. External organization.",
+        };
+      }
+      return issue;
     },
     getCheIssueLabels(cheIssueNumber: number): any[] {
       const issue = this.cheIssues.get(cheIssueNumber);
