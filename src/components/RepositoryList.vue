@@ -282,7 +282,7 @@ export default defineComponent({
   name: "RepositoryList",
   setup() {
     const dateTime = ref(subDays(7, new Date()));
-    const dateTimeLowerLimit = ref(subDays(15, new Date()));
+    const dateTimeLowerLimit = ref(subDays(22, new Date()));
     const dateTimeUpperLimit = ref(new Date());
 
     return { dateTime, dateTimeLowerLimit, dateTimeUpperLimit };
